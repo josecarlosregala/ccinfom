@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task Manager</h1>
+      <button onclick="window.location.href='../index.html'">
+        Back to Dashboard
+      </button>
+      <input
+        type="text"
+        id="search-bar"
+        placeholder="Search for tasks..."
+        oninput="searchTasks()"
+      />
+
+      <button onclick="openAddForm()">Add Task</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Task ID</th>
+            <th>Task Name</th>
+            <th>Deadline</th>
+            <th>Project ID</th>
+            <th>Status</th>
+            <th>Date Complete</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="task-table"></tbody>
+      </table>
+
+      <form id="add-task-form" style="display: none">
+        <h2>Add Task</h2>
+        <label>Task Name</label>
+        <input type="text" id="add-task-name" required />
+        <label>Deadline</label>
+        <input type="date" id="add-deadline" required />
+        <label>Project ID</label>
+        <input type="number" id="add-project-id" required />
+        <button type="submit">Add</button>
+        <button type="button" onclick="closeAddForm()">Cancel</button>
+      </form>
+
+      <form id="edit-task-form" style="display: none">
+        <h2>Edit Task</h2>
+        <label>Task Name</label>
+        <input type="text" id="edit-task-name" required />
+        <label>Deadline</label>
+        <input type="date" id="edit-deadline" required />
+        <label>Project ID</label>
+        <input type="number" id="edit-project-id" required />
+        <label>Status</label>
+        <select id="edit-status">
+          <option value="not started">Not Started</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="completed">Completed</option>
+        </select>
+        <label>Date Complete</label>
+        <input type="date" id="edit-date-complete" />
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeEditForm()">Cancel</button>
+      </form>
+    </div>
+
+    <script src="tasks.js"></script>
+  </body>
+</html>

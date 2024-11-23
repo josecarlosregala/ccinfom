@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Manager</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Project Manager</h1>
+      <button onclick="window.location.href='../index.html'">
+        Back to Dashboard
+      </button>
+      <input
+        type="text"
+        id="search-bar"
+        placeholder="Search for projects..."
+        oninput="searchProjects()"
+      />
+
+      <button onclick="openAddForm()">Add Project</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>Remaining Budget</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="project-table"></tbody>
+      </table>
+
+      <!-- Add Project Form -->
+      <form id="add-project-form" style="display: none">
+        <h2>Add Project</h2>
+        <label>Project Name</label>
+        <input type="text" id="add-project-name" required />
+        <label>Remaining Budget</label>
+        <input type="number" id="add-remaining-budget" required />
+        <label>Tasks per Bonus</label>
+        <input type="number" id="add-tasks-per-bonus" required />
+        <label>Bonus Amount</label>
+        <input type="number" id="add-bonus-amount" required />
+        <button type="submit">Add</button>
+        <button type="button" onclick="closeAddForm()">Cancel</button>
+      </form>
+
+      <!-- Edit Project Form -->
+      <form id="edit-project-form" style="display: none">
+        <h2>Edit Project</h2>
+        <label>Project Name</label>
+        <input type="text" id="edit-project-name" required />
+        <label>Remaining Budget</label>
+        <input type="number" id="edit-remaining-budget" required />
+        <label>Tasks per Bonus</label>
+        <input type="number" id="edit-tasks-per-bonus" required />
+        <label>Bonus Amount</label>
+        <input type="number" id="edit-bonus-amount" required />
+        <label>Start Date</label>
+        <input type="date" id="edit-start-date" required />
+        <label>End Date</label>
+        <input type="date" id="edit-end-date" required />
+        <label>Status</label>
+        <select id="edit-status">
+          <option value="ongoing">Ongoing</option>
+          <option value="completed">Completed</option>
+          <option value="paused">Paused</option>
+        </select>
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeEditForm()">Cancel</button>
+      </form>
+    </div>
+
+    <script src="projects.js"></script>
+  </body>
+</html>

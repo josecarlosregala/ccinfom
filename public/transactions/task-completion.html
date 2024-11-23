@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Completion</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Complete Task</h1>
+      <button onclick="window.location.href='../index.html'">
+        Back to Dashboard
+      </button>
+
+      <input
+        type="text"
+        id="search-bar"
+        placeholder="Search for tasks..."
+        oninput="searchTasks()"
+      />
+
+      <table>
+        <thead>
+          <tr>
+            <th>Task ID</th>
+            <th>Task Name</th>
+            <th>Deadline</th>
+            <th>Project ID</th>
+            <th>Status</th>
+            <th>Date Complete</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="task-table"></tbody>
+      </table>
+
+      <form id="taskCompletionForm">
+        <label for="taskID">Task ID:</label>
+        <input type="number" id="taskID" name="taskID" required />
+        <button type="submit">Complete Task</button>
+      </form>
+    </div>
+
+    <script src="task-completion.js"></script>
+  </body>
+</html>

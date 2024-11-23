@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link Expense to Project</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Link Expense to Project</h1>
+      <button onclick="window.location.href='../index.html'">
+        Back to Dashboard
+      </button>
+
+      <form id="expenseLinkForm">
+        <label for="expenseId">Expense ID:</label>
+        <input type="number" id="expenseId" name="expenseId" required />
+
+        <label for="projectId">Project ID:</label>
+        <input type="number" id="projectId" name="projectId" required />
+
+        <button type="submit">Link Expense</button>
+      </form>
+    </div>
+
+    <script src="expenses-computation.js"></script>
+  </body>
+</html>

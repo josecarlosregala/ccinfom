@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expenses Manager</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Expenses Manager</h1>
+      <button onclick="window.location.href='../index.html'">
+        Back to Dashboard
+      </button>
+      <input
+        type="text"
+        id="search-expense-bar"
+        placeholder="Search for expenses..."
+        oninput="searchExpenses()"
+      />
+
+      <button onclick="openAddExpenseForm()">Add Expense</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Expense ID</th>
+            <th>Expense Name</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Cost</th>
+            <th>Project ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="expense-table"></tbody>
+      </table>
+
+      <form id="add-expense-form" style="display: none">
+        <h2>Add Expense</h2>
+        <label>Expense Name</label>
+        <input type="text" id="add-expense-name" required />
+        <label>Type</label>
+        <select id="add-expense-type" required>
+          <option value="materials">Materials</option>
+          <option value="equipment">Equipment</option>
+          <option value="services">Services</option>
+          <option value="employee payment">Employee Payment</option>
+          <option value="travel">Travel</option>
+          <option value="miscellaneous">Miscellaneous</option>
+        </select>
+        <label>Cost</label>
+        <input type="number" id="add-expense-cost" required />
+
+        <button type="submit">Add</button>
+        <button type="button" onclick="closeAddExpenseForm()">Cancel</button>
+      </form>
+
+      <form id="edit-expense-form" style="display: none">
+        <h2>Edit Expense</h2>
+        <label>Expense Name</label>
+        <input type="text" id="edit-expense-name" required />
+        <label>Type</label>
+        <input type="text" id="edit-expense-type" required />
+        <label>Date</label>
+        <input type="date" id="edit-expense-date" required />
+        <label>Cost</label>
+        <input type="number" id="edit-expense-cost" required />
+        <label>Project ID</label>
+        <input type="number" id="edit-expense-project-id" required />
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeEditExpenseForm()">Cancel</button>
+      </form>
+    </div>
+
+    <script src="expenses.js"></script>
+  </body>
+</html>
