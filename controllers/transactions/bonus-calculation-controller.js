@@ -15,7 +15,7 @@ export async function calculateAndRecordBonus(emp_id, project_id) {
       [emp_id]
     );
 
-    const last_bonus_date = lastBonusRows[0]?.last_bonus_date || null;
+    const last_bonus_date = lastBonusRows[0]?.last_bonus_date || '1970-01-01';
 
     const [taskCountRows] = await connection.query(
       `
@@ -23,7 +23,7 @@ export async function calculateAndRecordBonus(emp_id, project_id) {
       FROM EmployeeTasks
       WHERE emp_id = ? AND emp_status = 'completed' AND date_complete > ?
       `,
-      [emp_id, last_bonus_date || "0000-00-00"]
+      [emp_id, last_bonus_date || "1970-01-01"]
     );
 
     const completed_tasks = taskCountRows[0]?.completed_tasks || 0;
@@ -35,7 +35,7 @@ export async function calculateAndRecordBonus(emp_id, project_id) {
       WHERE project_id = ?
       `,
       [project_id]
-    );
+      );
 
     const { tasks_per_bonus, bonus_amount } = projectDetailsRows[0];
 
@@ -43,12 +43,31 @@ export async function calculateAndRecordBonus(emp_id, project_id) {
       Math.floor(completed_tasks / tasks_per_bonus) * bonus_amount;
 
     if (eligible_bonus > 0) {
+      
+        const expense_name = `Bonus for Employee ${emp_id}`;
+        const expense_type = "employee payment";
+        const cost = eligible_bonus;
+
+        const [expenseResult] = await connection.query(
+          `
+          INSERT INTO EmployeeManagement.Expenses (expense_name, expense_type, expense_date, cost)
+          VALUES (?, ?, NOW(), ?)
+          `,
+          [expense_name, expense_type, cost]
+        );
+
+        if (expenseResult.affectedRows === 0) {
+          console.error("Failed to record expense.");
+          await connection.rollback();
+          return false;
+        }
+        
       const [insertPaymentResult] = await connection.query(
         `
         INSERT INTO EmployeePayments (emp_id, expense_id, payment_type, cost, payment_date)
-        VALUES (?, NULL, 'bonus', ?, NOW())
+        VALUES (?, ?, 'bonus', ?, NOW())
         `,
-        [emp_id, eligible_bonus]
+        [emp_id, expenseResult.insertId, eligible_bonus]
       );
 
       if (insertPaymentResult.affectedRows === 0) {

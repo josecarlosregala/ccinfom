@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/bonus-calculation";
+const API_URL = "http://localhost:3000/bonus-calculation/calculate-bonus";
 const bonusForm = document.getElementById("bonusCalculationForm");
 const bonusDetailsDiv = document.getElementById("bonusDetails");
 const errorMessageDiv = document.getElementById("error-message");
