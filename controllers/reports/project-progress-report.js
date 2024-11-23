@@ -1,17 +1,6 @@
-import mysql from "mysql2";
-import dotenv from "dotenv";
-dotenv.config();
+import pool from "../../db.js";
 
-const pool = mysql
-  .createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-  })
-  .promise();
-
-async function getProjectProgressReport() {
+export async function getProjectProgressReport() {
   try {
     const query = `
       SELECT 
@@ -29,7 +18,6 @@ async function getProjectProgressReport() {
     `;
     const [rows] = await pool.query(query);
 
-    // Process results for better readability
     const report = rows.map((row) => ({
       project_id: row.project_id,
       project_name: row.project_name,
@@ -44,7 +32,7 @@ async function getProjectProgressReport() {
         : [],
     }));
 
-    return report; // Return the report for further use (e.g., API response, logging, etc.)
+    return report;
   } catch (error) {
     console.error("Error generating Project Progress Report:", error.message);
     throw error;

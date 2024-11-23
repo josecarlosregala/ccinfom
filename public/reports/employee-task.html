@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Task Completion</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Employee Task Completion</h1>
+      <button onclick="window.location.href='../index.html'">
+        Back to Dashboard
+      </button>
+
+      <form id="employeeTaskForm">
+        <button type="submit">Generate Report</button>
+      </form>
+
+      <div id="employeeTaskDetails" style="display: none">
+        <h2>Employee Task Completion Report</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th>Month</th>
+              <th>Completed Tasks</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTaskTable"></tbody>
+        </table>
+      </div>
+
+      <div id="error-message" style="display: none; color: red">
+        <p>
+          Error generating employee task completion report. Please try again.
+        </p>
+      </div>
+    </div>
+
+    <script src="employee-task.js"></script>
+  </body>
+</html>

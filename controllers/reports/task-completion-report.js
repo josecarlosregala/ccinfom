@@ -1,4 +1,6 @@
-async function EmployeeTaskCompletion() {
+import pool from "../../db.js";
+
+export async function EmployeeTaskCompletion() {
   const sql = `
   SELECT 
       e.emp_id,
@@ -34,5 +36,3 @@ async function EmployeeTaskCompletion() {
     throw error;
   }
 }
-
-const result = await EmployeeTaskCompletion();

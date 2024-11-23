@@ -9,22 +9,23 @@ async function assignTask() {
 
     if (!emp_id || !task_id) {
       alert("Employee ID and Task ID are required.");
-      return
+      return;
     }
-    
-    const response = await fetch("http://localhost:3000/task-assignment/assign-task", {
-      // Adjust this URL to match your server's route
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ employeeID: emp_id, taskID: task_id }),
-    });
+
+    const response = await fetch(
+      "http://localhost:3000/task-assignment/assign-task",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ employeeID: emp_id, taskID: task_id }),
+      }
+    );
 
     const data = await response.json();
 
     if (response.ok) {
-      // If task is assigned successfully, display a success message
       alert(
         `Task ${task_id} has been successfully assigned to Employee ${emp_id}.`
       );
@@ -34,11 +35,10 @@ async function assignTask() {
       document.getElementById("assignmentDetails").style.display = "block";
       document.getElementById("error-message").style.display = "none";
     } else {
-      // If there is an error, display the error message
       document.getElementById("assignmentDetails").style.display = "none";
       document.getElementById("error-message").style.display = "block";
       alert(data.error || "Error assigning task. Please try again.");
     }
   });
 }
-assignTask()
+assignTask();
