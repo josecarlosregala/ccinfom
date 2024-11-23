@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Progress Report</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Project Progress Report</h1>
+      <button onclick="window.location.href='../index.html'">
+        Back to Dashboard
+      </button>
+
+      <form id="projectProgressForm">
+        <button type="submit">Generate Report</button>
+      </form>
+
+      <div id="projectProgressDetails" style="display: none">
+        <h2>Project Progress</h2>
+        <ul id="projectProgressList"></ul>
+      </div>
+
+      <div id="error-message" style="display: none; color: red">
+        <p>Error generating project progress report. Please try again.</p>
+      </div>
+    </div>
+
+    <script src="project-progress.js"></script>
+  </body>
+</html>
