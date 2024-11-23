@@ -1,3 +1,5 @@
+import pool from "../../db.js";
+
 async function EmployeeTaskCompletion() {
   const sql = `
   SELECT 

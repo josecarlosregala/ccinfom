@@ -1,3 +1,5 @@
+import pool from "../../db.js";
+
 async function getPayrollForMonthAndYear(year, month) {
   const [rows] = await pool.query(
     `
