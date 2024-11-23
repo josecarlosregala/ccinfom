@@ -1,18 +1,18 @@
 async function assignTask() {
   const form = document.getElementById("taskAssignmentForm");
 
-  const emp_id = document.getElementById("emp_id").value;
-  const task_id = document.getElementById("task_id").value;
-
-  if (!emp_id || !task_id) {
-    alert("Employee ID and Task ID are required.");
-    return;
-  }
-
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const response = await fetch("/assign-task", {
+    const emp_id = document.getElementById("emp_id").value;
+    const task_id = document.getElementById("task_id").value;
+
+    if (!emp_id || !task_id) {
+      alert("Employee ID and Task ID are required.");
+      return
+    }
+    
+    const response = await fetch("http://localhost:3000/task-assignment/assign-task", {
       // Adjust this URL to match your server's route
       method: "POST",
       headers: {
@@ -41,3 +41,4 @@ async function assignTask() {
     }
   });
 }
+assignTask()
